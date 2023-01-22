@@ -1,5 +1,7 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormGroup } from "@angular/forms";
+import { Router } from "@angular/router";
+import { AccountService } from "../services/account.service";
 
 @Component({
     selector: 'app-login',
@@ -7,11 +9,28 @@ import { FormGroup } from "@angular/forms";
     styleUrls:['./login.component.css']
 })
 
-export class LoginComponent {
-    /*
-    form = new FormGroup({
-        username: new FormControl(null, Validators.required)
-        password: new FormControl(null, Validators.required)
-    })
-    */
+export class LoginComponent implements OnInit {
+    //Login logic.
+    loginObj: any = {
+        username: '',
+        password:''
+    }
+    onLogin(){
+
+        //Call api function for login.
+
+        this.accService.onLogin(this.loginObj).subscribe((res:any) => {
+            debugger
+            console.log('res', res);
+            localStorage.setItem('accessToken', res.accessToken);
+            this.route.navigateByUrl('/dash')
+        })
+
+    }
+    
+    constructor(private accService: AccountService, private route: Router){}
+
+    ngOnInit(): void{
+    }
+
 }
