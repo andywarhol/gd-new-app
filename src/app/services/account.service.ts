@@ -12,5 +12,5 @@ export class AccountService{
         return this.http.post('http://localhost:3000/auth/signin', obj)
     }
 
-    get
+    
 }

@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
         //Call api function for login.
 
         this.accService.onLogin(this.loginObj).subscribe((res:any) => {
-            debugger
             console.log('res', res);
             localStorage.setItem('accessToken', res.accessToken);
             this.route.navigateByUrl('/dash')

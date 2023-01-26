@@ -8,6 +8,13 @@ import { FormsModule, NgModel} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
+import { RouterModule, Routes } from '@angular/router';
+
+
+const routes : Routes = [
+  { path: ' ', component: LoginComponent},
+  { path: 'dash', component: DashboardComponent }
+]
 
 
 @NgModule({
@@ -15,13 +22,15 @@ import { HomeComponent } from './home/home.component';
     AppComponent, 
     LoginComponent,
     DashboardComponent,
-    HomeComponent
+    HomeComponent,
+
   ],
   imports: [
     BrowserModule,
     NgbModule,
     HttpClientModule, 
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
