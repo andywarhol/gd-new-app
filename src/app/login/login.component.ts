@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
         this.accService.onLogin(this.loginObj).subscribe((res:any) => {
             console.log('res', res);
             localStorage.setItem('accessToken', res.accessToken);
-            this.route.navigateByUrl('/dash')
+            this.route.navigateByUrl('/home')
         })
 
     }
