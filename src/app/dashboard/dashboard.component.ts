@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
     username: string;
   
     goToProductPage(){
-        this.route.navigateByUrl('/product')
+        this.route.navigateByUrl('/products')
     }
 
 

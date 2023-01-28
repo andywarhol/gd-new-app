@@ -14,10 +14,10 @@ export class AddProductComponent implements OnInit {
     model: '',
     category: '',
     description: '',
-    quantity: 0,
-    wharehouse: 0,
-    shelving: 0,
-    shelf: 0,
+    quantity: '',
+    wharehouse: '',
+    shelving: '',
+    shelf: '',
     serial: ''
   }
 

@@ -4,15 +4,15 @@
     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
       <form>
         <div class = "mt-2 mb-2 ms-4 me-4">
-          <input class="form-control form-control-sm mb-1" type="text" placeholder="Marca">
-          <input class="form-control form-control-sm mb-1" type="text" placeholder="Modelo">
-          <input class="form-control form-control-sm mb-1" type="text" placeholder="Categoria">
-          <input class="form-control form-control-sm mb-1" type="text" placeholder="Descripción">
-          <input class="form-control form-control-sm mb-1" type="text" placeholder="Cantidad">
-          <input class="form-control form-control-sm mb-1" type="text" placeholder="Almacen">
-          <input class="form-control form-control-sm mb-1" type="text" placeholder="Shelving">
-          <input class="form-control form-control-sm mb-1" type="text" placeholder="Shelf">
-          <input class="form-control form-control-sm mb-1" type="text" placeholder="Serial">
+          <input class="form-control form-control-sm mb-1" type="text" name = "brand"  placeholder="Marca" [(ngModel)]="newProductObj.brand">
+          <input class="form-control form-control-sm mb-1" type="text" name = "model" placeholder="Modelo" [(ngModel)]="newProductObj.model">
+          <input class="form-control form-control-sm mb-1" type="text" name = "category" placeholder="Categoria" [(ngModel)]="newProductObj.category">
+          <input class="form-control form-control-sm mb-1" type="text" name = "description" placeholder="Descripción" [(ngModel)]="newProductObj.description">
+          <input class="form-control form-control-sm mb-1" type="text" name = "quantity" placeholder="Cantidad" [(ngModel)]="newProductObj.quantity">
+          <input class="form-control form-control-sm mb-1" type="text" name = "wharehouse" placeholder="Almacen" [(ngModel)]="newProductObj.wharehouse">
+          <input class="form-control form-control-sm mb-1" type="text" name = "shelving" placeholder="Shelving" [(ngModel)]="newProductObj.shelving">
+          <input class="form-control form-control-sm mb-1" type="text" name = "shelf"  placeholder="Shelf" [(ngModel)]="newProductObj.shelf">
+          <input class="form-control form-control-sm mb-1" type="text" name = "serial" placeholder="Serial" [(ngModel)]="newProductObj.serial">
 
           <button class = "btn btn-outline-primary btn-sm btn-block" (click)="addProduct()">Agregar Producto</button>
         </div>

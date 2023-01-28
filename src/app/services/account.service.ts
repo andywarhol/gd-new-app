@@ -22,11 +22,11 @@ export class AccountService{
 
     addProduct(obj : any) : Observable<any>{
         debugger
-        return this.http.post('http://localhost:3000/products/new',{obj}, httpOptions)
+        return this.http.post('http://localhost:3000/products/new',obj)
     }
 
     getAllProducts() : Observable<any>{
-        return this.http.get('http://localhost:3000/products/new');
+        return this.http.get('http://localhost:3000/products');
     }
     
 }

@@ -17,7 +17,7 @@ import { HeaderComponent } from './header/header.component';
 const routes : Routes = [
   { path: '', component: LoginComponent},
   { path: 'home', component: HomeComponent },
-  { path: 'product', component: ProductComponent }
+  { path: 'products', component: ProductComponent }
 ]
 
 
