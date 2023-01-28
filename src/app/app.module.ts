@@ -9,11 +9,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CustomInterceptor } from './services/custom.interceptor';
+import { ProductComponent } from './product/product.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import { HeaderComponent } from './header/header.component';
 
 
 const routes : Routes = [
   { path: '', component: LoginComponent},
-  { path: 'home', component: DashboardComponent }
+  { path: 'home', component: HomeComponent },
+  { path: 'product', component: ProductComponent }
 ]
 
 
@@ -23,7 +27,9 @@ const routes : Routes = [
     LoginComponent,
     DashboardComponent,
     HomeComponent,
-
+    ProductComponent,
+    AddProductComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

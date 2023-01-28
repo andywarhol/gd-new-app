@@ -10,7 +10,6 @@ import { AccountService } from "../services/account.service";
 })
 
 export class LoginComponent implements OnInit {
-    //Login logic.
     loginObj: any = {
         username: '',
         password:''
@@ -20,8 +19,9 @@ export class LoginComponent implements OnInit {
         //Call api function for login.
 
         this.accService.onLogin(this.loginObj).subscribe((res:any) => {
-            console.log('res', res);
-            localStorage.setItem('accessToken', res.accessToken);
+            localStorage.setItem('token', res.accessToken);
+            localStorage.setItem('username', res.username)
+            localStorage.setItem('firstName', res.firstName)
             this.route.navigateByUrl('/home')
         })
 
