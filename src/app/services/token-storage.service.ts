@@ -39,6 +39,4 @@ export class TokenStorageService {
   public getName(): string {
     return localStorage.getItem('firstName');
   }
-
-
 }

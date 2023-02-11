@@ -21,12 +21,15 @@ export class AccountService{
     }
 
     addProduct(obj : any) : Observable<any>{
-        debugger
         return this.http.post('http://localhost:3000/products/new',obj)
     }
 
     getAllProducts() : Observable<any>{
         return this.http.get('http://localhost:3000/products');
     }
-    
+   
+    updateProductQuantity(obj : any) : Observable<any>{
+        const{id, quantity} = obj;
+        return this.http.patch(`http://localhost:3000/products/${id}/quantity`, {quantity});
+    }
 }

@@ -1,4 +1,4 @@
-<div class="container-fluid d-flex flex-column grow">
+<!--div class="container-fluid d-flex flex-column grow">
     <div class="row">
         <div class="col-md-4">
             <dash></dash>
@@ -9,5 +9,41 @@
         </div>
     </div>
     
-</div>
+</div
+<mat-toolbar>
+    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+        <mat-icon *ngIf="!sidenav.opened">
+            menu
+        </mat-icon>
+        <mat-icon *ngIf="sidenav.opened">
+            close
+        </mat-icon>
+        
+    </button>
+    Inventario
+    <span class = "flex-span"></span>
+    <button mat-icon-button (click)="productsidenav.toggle()">
+        <mat-icon>plus_one</mat-icon>
+    </button>
 
+
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav class="main-sidenav" #sidenav="matSidenav" >
+        <app-sidenav-button></app-sidenav-button>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="content mat-elevation-z4">
+            Main content //agregar aqui tag con la info 
+        </div>
+    </mat-sidenav-content>
+
+    <mat-sidenav class = "products-sidenav" #productsidenav="matSidenav" mode="over" position="end">
+        <h3>Agregar Producto</h3>
+        
+        <app-add-product></app-add-product>
+ 
+    </mat-sidenav>
+</mat-sidenav-container-->
+<p>Buenos dias grupo</p>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Product } from 'src/interfaces/product.interface';
 import { AccountService } from '../services/account.service';
 
 @Component({
@@ -9,21 +10,44 @@ import { AccountService } from '../services/account.service';
 })
 export class AddProductComponent implements OnInit {
 
-  newProductObj : any = {
+  newProductObj : Product = {
     brand: '',
     model: '',
     category: '',
     description: '',
-    quantity: '',
-    wharehouse: '',
+    quantity: 0,
+    warehouse: '',
     shelving: '',
     shelf: '',
     serial: ''
   }
 
+
+  warehouseDropdown: string[] = [
+    "ALMACEN 1 - PRINCIPAL",
+    "ALMACEN 2 - OFICINA",
+    "ALMACEN 3 - SUBODEGA",
+    "ALMACEN 4 - OTRO",
+    "ALMACEN 5 - PUEBLA"
+  ]
+
+  categoryDropdown: string[] = [
+    "CABLEADO ESTRUCTURADO",
+    "CCTV",
+    "AUDIO",
+    "VIDEO",
+    "ENERGIA",
+    "CANALIZACION",
+    "INCENDIO",
+    "ALARMA",
+    "FIBRA OPTICA",
+    "EQUIPO ACTIVO RED",
+    "ELECTRICO"
+  ]
+
+
   addProduct(){
     this.accService.addProduct(this.newProductObj).subscribe((res:any) => {
-      console.log(res)
       this.route.navigateByUrl('/products')
     })
   }

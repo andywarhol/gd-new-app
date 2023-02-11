@@ -1,22 +1,50 @@
+<mat-form-field appearance="outline">
+  <mat-label>Marca</mat-label>
+  <input matInput name = "brand" [(ngModel)]="newProductObj.brand">
+</mat-form-field>
 
-  <div class="collapse" id="product-collapse">
+<mat-form-field appearance="outline">
+  <mat-label>Modelo</mat-label>
+  <input matInput name = "model" [(ngModel)]="newProductObj.model">
+</mat-form-field>
 
-    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-      <form>
-        <div class = "mt-2 mb-2 ms-4 me-4">
-          <input class="form-control form-control-sm mb-1" type="text" name = "brand"  placeholder="Marca" [(ngModel)]="newProductObj.brand">
-          <input class="form-control form-control-sm mb-1" type="text" name = "model" placeholder="Modelo" [(ngModel)]="newProductObj.model">
-          <input class="form-control form-control-sm mb-1" type="text" name = "category" placeholder="Categoria" [(ngModel)]="newProductObj.category">
-          <input class="form-control form-control-sm mb-1" type="text" name = "description" placeholder="Descripción" [(ngModel)]="newProductObj.description">
-          <input class="form-control form-control-sm mb-1" type="text" name = "quantity" placeholder="Cantidad" [(ngModel)]="newProductObj.quantity">
-          <input class="form-control form-control-sm mb-1" type="text" name = "wharehouse" placeholder="Almacen" [(ngModel)]="newProductObj.wharehouse">
-          <input class="form-control form-control-sm mb-1" type="text" name = "shelving" placeholder="Shelving" [(ngModel)]="newProductObj.shelving">
-          <input class="form-control form-control-sm mb-1" type="text" name = "shelf"  placeholder="Shelf" [(ngModel)]="newProductObj.shelf">
-          <input class="form-control form-control-sm mb-1" type="text" name = "serial" placeholder="Serial" [(ngModel)]="newProductObj.serial">
+<mat-form-field appearance="outline">
+  <mat-label>Categoria</mat-label>
+  <input matInput name = "category" [(ngModel)]="newProductObj.category">
+</mat-form-field>
 
-          <button class = "btn btn-outline-primary btn-sm btn-block" (click)="addProduct()">Agregar Producto</button>
-        </div>
-    
-      </form>
-    </ul>
+<mat-form-field appearance="outline">
+  <mat-label>Descripción</mat-label>
+  <input matInput name = "description" [(ngModel)]="newProductObj.description">
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+  <mat-label>Cantidad</mat-label>
+  <input matInput name = "quantity" [(ngModel)]="newProductObj.quantity">
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+  <mat-label>Almacen</mat-label>
+  <input matInput name = "warehouse" [(ngModel)]="newProductObj.warehouse">
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+  <mat-label>Shelving</mat-label>
+  <input matInput name = "shelving" [(ngModel)]="newProductObj.shelving">
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+  <mat-label>Shelf</mat-label>
+  <input matInput name = "shelf" [(ngModel)]="newProductObj.shelf">
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+  <mat-label>Serial</mat-label>
+  <input matInput name = "serial" [(ngModel)]="newProductObj.serial">
+</mat-form-field>
+
+<div class="example-button-container">
+  <button mat-fab color="primary" (click)="addProduct()" >
+    <mat-icon>plus_one</mat-icon>
+  </button>
 </div>

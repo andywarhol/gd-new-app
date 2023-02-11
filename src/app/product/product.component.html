@@ -1,24 +1,70 @@
-<div class="container-fluid d-flex flex-column grow">
-    <div class="row">
-        <div class="col-md-4">
-            <dash></dash>
-        </div>
-        <div class="col-md-8 main bg-secondary" style="height: 800px!important;">
-            <div class="container">
-                <div class="row">
-                    <div class="card">
-                        <div class="card-header">
-                            <p>header</p>
-                        </div>
-                        <div class="card-body">
-                            <p>description</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-        </div>
-    </div>
-    
-</div>
+<h1>Productos</h1>
 
+<table mat-table [dataSource]="productList" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="Marca">
+      <th mat-header-cell *matHeaderCellDef> {{displayedColumns[0]}} </th>
+      <td mat-cell *matCellDef="let element"> {{element.brand}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="Modelo">
+      <th mat-header-cell *matHeaderCellDef> {{displayedColumns[1]}} </th>
+      <td mat-cell *matCellDef="let element"> {{element.model}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="Categoria">
+      <th mat-header-cell *matHeaderCellDef> {{displayedColumns[2]}} </th>
+      <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Descripción">
+      <th mat-header-cell *matHeaderCellDef> {{displayedColumns[3]}} </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+      
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Cantidad">
+        <th mat-header-cell *matHeaderCellDef> {{displayedColumns[4]}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+    </ng-container>
+
+      
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Ubicación">
+        <th mat-header-cell *matHeaderCellDef> {{displayedColumns[5]}} </th>
+        <td mat-cell *matCellDef="let element"> {{element._id}}-{{element.shelving}}-{{element.shelf}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Agregar Existencias" style = "display: none;">
+        <th mat-header-cell *matHeaderCellDef> {{displayedColumns[6]}} </th>
+        <td mat-cell *matCellDef="let element"> 
+            <form>
+                <input matInput id="{{element._id}}">
+                <!--input matInput  type="number" [id] = "element._id" name ="quantity" (ngModel)="updateQuantity.quantity" min="1"--> 
+                <!--input id = "{{element._id}}"type="text"  name="id"  readonly 
+                [ngModel]="element._id" (ngModel)="updateQuantity.id"-->
+                
+                <button (click)="updateProductQuantity(element._id)">boton</button> 
+        
+                
+               
+            </form>
+        </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+  
