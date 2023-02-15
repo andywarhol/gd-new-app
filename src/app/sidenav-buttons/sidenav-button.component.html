@@ -1,0 +1,28 @@
+
+<img class = "avatar mat-elevation-z8" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png">
+<h4 class="name">{{username}}</h4>
+<!--p class = "designation">Software Engineer</p-->
+
+<mat-divider></mat-divider>
+
+<button mat-button class = "menu-button">
+    <mat-icon>inventory</mat-icon>
+    <span>Inventario</span>
+</button>
+
+<button mat-button class = "menu-button" (click)="goToProductPage()">
+    <mat-icon>warehouse</mat-icon>
+    <span>Productos</span>
+</button>
+
+<button mat-button class = "menu-button">
+    <mat-icon>label_important_outline</mat-icon>
+    <span>Salidas</span>
+</button>
+
+<mat-divider></mat-divider>
+
+<button mat-button class = "menu-button" (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    <span>Log out</span>
+</button>

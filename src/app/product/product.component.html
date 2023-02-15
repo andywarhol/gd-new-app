@@ -49,7 +49,7 @@
         <th mat-header-cell *matHeaderCellDef> {{displayedColumns[6]}} </th>
         <td mat-cell *matCellDef="let element"> 
             <form>
-                <input matInput id="{{element._id}}">
+                <input matInput [id]="element._id" name ="quantity" [(ngModel)]="updateQuantity.quantity">
                 <!--input matInput  type="number" [id] = "element._id" name ="quantity" (ngModel)="updateQuantity.quantity" min="1"--> 
                 <!--input id = "{{element._id}}"type="text"  name="id"  readonly 
                 [ngModel]="element._id" (ngModel)="updateQuantity.id"-->
