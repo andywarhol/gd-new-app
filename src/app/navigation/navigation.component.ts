@@ -12,7 +12,7 @@ import { TokenStorageService } from "../services/token-storage.service";
 })
 export class NavigationComponent implements OnInit {
 
-  title: any = "hola";
+  title: any = "Inventario";
 
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;

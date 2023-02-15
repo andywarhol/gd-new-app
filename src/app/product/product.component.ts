@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTable } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Product } from 'src/interfaces/product.interface';
 import { AccountService } from '../services/account.service';
 import { TokenStorageService } from '../services/token-storage.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-product',
@@ -11,27 +13,28 @@ import { TokenStorageService } from '../services/token-storage.service';
   styleUrls: ['./product.component.css']
 })
 
+
 export class ProductComponent implements OnInit {
 
   static title: string = "Productos";
+  isLoggedIn = false;
 
-  updateQuantity: any = {
+  updateQuantity = this.formBuilder.group({
     id: '',
     quantity: 0
-  }
+  });
 
-  isLoggedIn = false;
-  productList:Product[] = [];
-  displayedColumns: string[] = ['Marca', 'Modelo', 'Categoria', 'Descripción', "Cantidad", "Ubicación", "Agregar Existencias"];
+  //columnas a mostrar
+  displayedColumns: string[] = ['Marca', 'Modelo', 'Categoria', 'Descripción', 'Cantidad', 'Ubicación', 'Agregar Existencias'];
+  //datos a mostrar
+  productsList:Product[] = [];
+  productsCount:number = this.productsList.length
 
-  updateProductQuantity(id : string ) : any {
-    console.log(id);
-    console.log(this.updateQuantity)
-    const quantity = document.getElementById(id);
-    console.log(quantity)
-    return this.accService.updateProductQuantity(this.updateQuantity).subscribe((res:any) => {
-      
 
+  updateProductQuantity(updateQuantity: FormGroup) : any {
+   // this.updateQuantity.id = id;
+
+    return this.accService.updateProductQuantity(this.updateQuantity.value).subscribe((res:any) => {
       this.getAllProducts();
     })
   }
@@ -39,11 +42,25 @@ export class ProductComponent implements OnInit {
   
   getAllProducts() : any{
     return this.accService.getAllProducts().subscribe((res:Product[])=>{
-      this.productList = res;
+      this.productsList = res;
     })
   }
 
-  constructor(private accService: AccountService, private route: Router, private tokenStorageService : TokenStorageService) { }
+  onSubmit(idForm: string): void {
+    // Process checkout data here
+    console.log(idForm)
+    console.log(JSON.stringify(this.updateQuantity.value));
+  
+    this.updateQuantity.patchValue({
+      id:idForm
+    })
+    console.log(JSON.stringify(this.updateQuantity.value));
+  
+    this.updateProductQuantity(this.updateQuantity);
+    this.updateQuantity.reset();
+  }
+
+  constructor(private formBuilder: FormBuilder, private accService: AccountService, private route: Router, private tokenStorageService : TokenStorageService) { }
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
@@ -57,4 +74,9 @@ export class ProductComponent implements OnInit {
  
   }
 
+}
+
+export class ArticleProduct {
+  constructor(public codigo: number, public descripcion: string, public precio: number) {
+  }
 }

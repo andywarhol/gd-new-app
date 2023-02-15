@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule, NgModel} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
@@ -25,6 +25,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NavigationComponent } from './navigation/navigation.component';
 import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
 
 const routes : Routes = [
   { path: '', component: LoginComponent},
@@ -54,6 +55,7 @@ const routes : Routes = [
     BrowserModule,
     HttpClientModule, 
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     MatSidenavModule,
@@ -64,7 +66,8 @@ const routes : Routes = [
     MatDividerModule,
     MatFormFieldModule,
     MatInputModule,
-    MatTableModule
+    MatTableModule, 
+    MatCardModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS, useClass: CustomInterceptor,
