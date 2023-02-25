@@ -22,11 +22,10 @@
     </button>
     {{title}}
     <span class = "flex-span"></span>
-    <button mat-icon-button (click)="productsidenav.toggle()">
+    <button mat-raised-button color="white" (click)="productsidenav.toggle()">
+        <span>Agregar &nbsp;</span>
         <mat-icon>plus_one</mat-icon>
     </button>
-
-
 </mat-toolbar>
 
 <mat-sidenav-container>
@@ -39,10 +38,24 @@
         </div>
     </mat-sidenav-content>
 
-    <mat-sidenav class = "products-sidenav" #productsidenav="matSidenav" mode="over" position="end">
-        <h3>Agregar Producto</h3>
-        
-        <app-add-product></app-add-product>
+    <mat-sidenav [ngClass] = "addProduct == true ? 'products-sidenav': 'exits-sidenav'" #productsidenav="matSidenav" mode="over" position="end">
+        <h1 style = "margin: 5px!important;">Agregar</h1>
+        <mat-button-toggle-group class = "buttons-toggle" name="fontStyle" aria-label="Font Style">
+            <mat-button-toggle value="producto" (click)="addProductTrue()">Producto</mat-button-toggle>
+            <mat-button-toggle value="salida"   (click)="addExitTrue()" >Salida </mat-button-toggle>
+        </mat-button-toggle-group>
  
+        <div *ngIf = "addProduct">
+            <hr>
+            <app-add-product></app-add-product>
+        </div>
+        <div *ngIf = "addExit">
+            <hr>
+            <app-add-exits></app-add-exits>
+        </div>
+
+
     </mat-sidenav>
+
+
 </mat-sidenav-container>

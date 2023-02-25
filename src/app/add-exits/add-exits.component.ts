@@ -1,0 +1,133 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Exit, ExitProduct } from 'src/interfaces/exits.interface';
+import { ExitKey } from 'src/interfaces/key.interface';
+import { Product } from 'src/interfaces/product.interface';
+import { QueryProducts } from 'src/interfaces/query-products.interface';
+import { AccountService } from '../services/account.service';
+
+@Component({
+  selector: 'app-add-exits',
+  templateUrl: './add-exits.component.html',
+  styleUrls: ['./add-exits.component.css']
+})
+export class AddExitsComponent implements OnInit {
+  query: QueryProducts ={
+    field: '',
+    search: ''
+  };
+
+  selectedProduct: Product ={
+    brand: '',
+    model: '',
+    category: '',
+    description: '',
+    quantity: 0,
+    warehouse: '',
+    shelving: '',
+    shelf: ''
+  };
+
+  foundProducts: Product[];  
+  
+  newExitProduct: ExitProduct ={
+    productId: '',
+    model: '',
+    quantity: 0,
+    returned: 0
+  }
+
+  newExit : Exit = {
+    key: '',
+    employee: '',
+    project: '',
+    client: '',
+    receives: '',
+    products: []
+  }
+
+  selectedProductsData: ExitProduct[] =[] 
+  showTable: boolean = false;
+  searchProducts() {
+    this.accService.searchProducts(this.query).subscribe((res: Product[]) => {
+      this.foundProducts = res;
+      if(res.length != 0){
+        this.labelselect = "--- PRODUCTOS ENCONTRADOS ---"
+      }
+    })
+  }
+
+  addExitProduct(){
+    this.newExit.products.push(this.newExitProduct);
+    this.selectedProductsData.push(this.newExitProduct);
+    if(this.selectedProductsData.length > 0){
+      this.showTable = true;
+    }
+
+    console.log(this.selectedProductsData)
+    this.newExitProduct = {
+      productId: '',
+      model: '',
+      quantity: 0,
+      returned: 0
+    }
+
+    this.selectedProduct = {
+      brand: '',
+      model: '',
+      category: '',
+      description: '',
+      warehouse: '',
+      shelving: '',
+      shelf: ''
+    }
+
+    this.foundProducts = []
+
+    this.query = {
+      field: '',
+      search: ''
+    }
+
+    this.labelselect = "--- No hay producto seleccionado ---";
+  }
+  
+  addExit(){
+    this.accService.addExit(this.newExit).subscribe((res:any) => {
+      if(this.route.url == '/salidas'){
+        window.location.reload();
+      } else {
+        this.route.navigateByUrl('/salidas')
+      }
+    })
+  }
+
+  getKey(){
+    this.accService.getExitKey().subscribe((res:ExitKey) => {
+      this.newExit.key = res.key;
+    })
+  
+    
+  }
+
+  selectProduct(product: Product){
+    this.selectedProduct = product;
+
+    this.newExitProduct.model = product.model;
+    this.newExitProduct.productId = product._id;
+    
+    this.newExitProduct.returned = 0;
+  }
+
+  constructor(private accService: AccountService,  private route: Router) { }
+
+  ngOnInit(): void {
+    this.getKey();
+    
+  }
+
+  //LABELS
+  labelselect: string = "false";
+  displayedColumns: string[] = ['Modelo', 'Almacen', 'Estante', 'Repisa'];
+
+}

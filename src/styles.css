@@ -6,4 +6,14 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
+.mat-dialog-container {
+    border-radius: 10px!important;
+}
 
+.mat-form-field-wrapper{
+    padding: 0px!important;
+}
+
+.table {
+    width: 100%!important;
+}

@@ -20,28 +20,31 @@
 
 <mat-form-field appearance="outline">
   <mat-label>Cantidad</mat-label>
-  <input matInput name = "quantity" [(ngModel)]="newProductObj.quantity">
+  <input matInput name = "quantity" type = "number" min = "1" [(ngModel)]="newProductObj.quantity">
 </mat-form-field>
 
-<mat-form-field appearance="outline">
+<!--mat-form-field appearance="outline">
   <mat-label>Almacen</mat-label>
   <input matInput name = "warehouse" [(ngModel)]="newProductObj.warehouse">
+</mat-form-field-->
+
+<mat-form-field class = "field-spacing-pselection" appearance="outline">
+  <mat-label>Almacen</mat-label>
+  <mat-select matInput  name = "warehouse" [(ngModel)]="newProductObj.warehouse">
+    <mat-option *ngFor = "let element of warehouseDropdown" value = "{{element.name}}">{{element.name}}</mat-option>
+  </mat-select>
 </mat-form-field>
 
 <mat-form-field appearance="outline">
-  <mat-label>Shelving</mat-label>
+  <mat-label>Estante</mat-label>
   <input matInput name = "shelving" [(ngModel)]="newProductObj.shelving">
 </mat-form-field>
 
 <mat-form-field appearance="outline">
-  <mat-label>Shelf</mat-label>
+  <mat-label>Repisa</mat-label>
   <input matInput name = "shelf" [(ngModel)]="newProductObj.shelf">
 </mat-form-field>
 
-<mat-form-field appearance="outline">
-  <mat-label>Serial</mat-label>
-  <input matInput name = "serial" [(ngModel)]="newProductObj.serial">
-</mat-form-field>
 
 <div class="example-button-container">
   <button mat-fab color="primary" (click)="addProduct()" >

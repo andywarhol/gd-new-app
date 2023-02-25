@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Productos</h1>
+<div mat-dialog-content>
+    <div *ngFor="let item of data">
+        <p>Modelo: {{item.model}}</p>
+        <p>Cantidad: {{item.quantity}}</p>
+        <p>Regresado: {{item.returned}}</p>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+</div>

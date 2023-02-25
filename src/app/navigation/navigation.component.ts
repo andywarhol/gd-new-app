@@ -14,8 +14,21 @@ export class NavigationComponent implements OnInit {
 
   title: any = "Inventario";
 
+  addProduct: boolean = true;
+  addExit: boolean = false;
+  
+  isLoggedIn = false;
+  username: string;
+
+
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
+
+  @ViewChild(MatSidenav)
+  productsidenav!: MatSidenav;
+  
+  @ViewChild(MatSidenav)
+  exitssidenav!: MatSidenav;
   
   constructor(private observer: BreakpointObserver, private tokenStorageService : TokenStorageService, private route: Router){
 
@@ -35,10 +48,17 @@ export class NavigationComponent implements OnInit {
     });
   }
 
+  addProductTrue(){
+    this.addProduct = true;
+    this.addExit = false;
+  }
+  
+  addExitTrue(){
+    this.addExit = true;
+    this.addProduct= false;
+  }
 
-  isLoggedIn = false;
-  username: string;
-
+  
   goToProductPage(){
       this.route.navigateByUrl('/products')
   }

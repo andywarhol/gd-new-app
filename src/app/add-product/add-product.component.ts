@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/interfaces/product.interface';
+import { warehouse } from 'src/interfaces/warehouse.interface';
 import { AccountService } from '../services/account.service';
 
 @Component({
@@ -23,13 +24,7 @@ export class AddProductComponent implements OnInit {
   }
 
 
-  warehouseDropdown: string[] = [
-    "ALMACEN 1 - PRINCIPAL",
-    "ALMACEN 2 - OFICINA",
-    "ALMACEN 3 - SUBODEGA",
-    "ALMACEN 4 - OTRO",
-    "ALMACEN 5 - PUEBLA"
-  ]
+  warehouseDropdown: warehouse[] = []
 
   categoryDropdown: string[] = [
     "CABLEADO ESTRUCTURADO",
@@ -48,7 +43,17 @@ export class AddProductComponent implements OnInit {
 
   addProduct(){
     this.accService.addProduct(this.newProductObj).subscribe((res:any) => {
-      this.route.navigateByUrl('/products')
+      if(this.route.url == '/products'){
+        window.location.reload();
+      } else {
+        this.route.navigateByUrl('/products')
+      }
+    })
+  }
+
+  getWarehouses(){
+    this.accService.getWarehouses().subscribe((res:warehouse[]) =>{
+      this.warehouseDropdown = res;
     })
   }
 
@@ -56,6 +61,7 @@ export class AddProductComponent implements OnInit {
   constructor(private accService: AccountService,  private route: Router) { }
 
   ngOnInit(): void {
+    this.getWarehouses();
   }
 
 }

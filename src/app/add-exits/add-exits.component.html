@@ -1,0 +1,193 @@
+
+<h2>Salida - {{newExit.key}}</h2>
+<div class = "exit-content">
+  <mat-form-field class = "field-spacing" appearance="outline" style="display: none;">
+    <mat-label>Llave</mat-label>
+    <input matInput name = "key" value="{{newExit.key}}" (ngModel)="newExit.key" readonly required>
+  </mat-form-field>
+
+  <mat-form-field class = "field-spacing" appearance="outline">
+    <mat-label>Proyecto</mat-label>
+    <input matInput name = "project" [(ngModel)]="newExit.project">
+  </mat-form-field>
+  
+  <mat-form-field class = "field-spacing" appearance="outline">
+    <mat-label>Empleado</mat-label>
+    <input matInput name = "employee" [(ngModel)]="newExit.employee">
+  </mat-form-field>
+  
+  <mat-form-field class = "field-spacing" appearance="outline">
+    <mat-label>Cliente</mat-label>
+    <input matInput name = "client" [(ngModel)]="newExit.client">
+  </mat-form-field>
+
+  <mat-form-field class = "field-spacing" appearance="outline">
+    <mat-label>Recibe</mat-label>
+    <input matInput name = "receives" [(ngModel)]="newExit.receives">
+  </mat-form-field>
+
+</div>
+
+<div class = "product-selection">
+  <div class ="product-first-child">
+    <h2>Productos Seleccionados</h2>
+    <table [ngClass] ="showTable? 'table-display-true': 'table-display-false'" mat-table [dataSource]="selectedProductsData" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="Modelo">
+        <th mat-header-cell *matHeaderCellDef> {{displayedColumns[0]}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.model}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="Almacen">
+        <th mat-header-cell *matHeaderCellDef> {{displayedColumns[1]}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.warehouse}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="Estante">
+        <th mat-header-cell *matHeaderCellDef> {{displayedColumns[2]}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.shelving}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="Repisa">
+        <th mat-header-cell *matHeaderCellDef> {{displayedColumns[3]}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.shelf}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  
+  <div class="product-sec-child">
+     
+ 
+
+    <div class="example-button-container">
+      <button mat-fab color="primary" (click)="addExit()" >
+        <span>AGREGAR</span>
+        <mat-icon>plus_one</mat-icon>
+      </button>
+    </div>
+  </div>
+  
+
+</div>
+<hr>
+
+
+<div class = "product-selection">
+  <div class ="product-selection-first-child">
+    <mat-card class = "card">
+      <mat-card-content>
+        <h2>Buscar Productos</h2>
+        <mat-form-field class = "field-spacing-pselection" appearance="outline">
+          <mat-label>Buscar por...</mat-label>
+          <mat-select matInput name = "field" [(ngModel)]="query.field">
+            
+            <mat-option value = "brand">Marca</mat-option>
+            <mat-option value = "model">Modelo</mat-option>
+            <mat-option value = "category">Category</mat-option>
+            <mat-option value = "description">Descripción</mat-option>
+          </mat-select>
+        </mat-form-field>
+    
+        <mat-form-field class = "field-spacing-pselection" appearance="outline">
+          <mat-label>Buscar</mat-label>
+          <input matInput name = "search" [(ngModel)]="query.search">
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" class = "field-spacing-button" (click)="searchProducts()">Buscar</button>
+
+        <mat-form-field [ngClass] = "labelselect == 'false'? 'select-display-none': 'select'" appearance="outline">
+          <mat-label>{{labelselect}}</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let product of foundProducts" [value]="product._id" (click) ="selectProduct(product)">
+              {{product.model}} - {{product.warehouse}} - {{product.shelving}} - {{product.shelf}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+        
+      </mat-card-content>
+    </mat-card>
+    
+ 
+  
+  </div>
+  
+  <div class="product-selection-sec-child">
+    <mat-card class = "card">
+      <mat-card-content> 
+        <h2>Detalles de producto seleccionado</h2> 
+        <mat-form-field class = "field-spacing-detalles" appearance="outline">
+          <mat-label>Marca</mat-label>
+          <input matInput [ngModel]="selectedProduct.brand"  readonly>
+        </mat-form-field>
+        <mat-form-field  class = "field-spacing-detalles" appearance="outline">
+          <mat-label>Modelo</mat-label>
+          <input matInput [(ngModel)]="selectedProduct.model" readonly>
+        </mat-form-field>
+        <mat-form-field  class = "field-spacing-detalles" appearance="outline">
+          <mat-label>Categoria</mat-label>
+          <input matInput [(ngModel)]="selectedProduct.category" readonly>
+        </mat-form-field>
+        <mat-form-field  class = "field-spacing-detalles" appearance="outline">
+          <mat-label>Descripción</mat-label>
+          <input matInput [(ngModel)]="selectedProduct.description" readonly>
+        </mat-form-field>
+        <mat-form-field  class = "field-spacing-detalles" appearance="outline">
+          <mat-label>Almacen</mat-label>
+          <input matInput [(ngModel)]="selectedProduct.warehouse" readonly>
+        </mat-form-field>
+        <mat-form-field  class = "field-spacing-detalles" appearance="outline">
+          <mat-label>Estante</mat-label>
+          <input matInput [(ngModel)]="selectedProduct.shelving" readonly>
+        </mat-form-field>
+        <mat-form-field  class = "field-spacing-detalles" appearance="outline">
+          <mat-label>Repisa</mat-label>
+          <input matInput [(ngModel)]="selectedProduct.shelf" readonly>
+        </mat-form-field>
+        <mat-form-field  class = "field-spacing-detalles" appearance="outline">
+          <mat-label>Disponibles</mat-label>
+          <input matInput [ngModel]="selectedProduct.quantity" readonly>
+        </mat-form-field>
+
+        <mat-form-field  class = "field-spacing-detalles" appearance="outline">
+          <mat-label>Cantidad</mat-label>
+          <input matInput matTooltip="El numero tiene que ser mayor a 0" type = "number" min = "1" max = {{selectedProduct.quantity}} [(ngModel)]="newExitProduct.quantity">
+        </mat-form-field>
+          
+        <div class="example-button-container">
+          <button mat-raised-button color="primary" class = "field-spacing-button" (click)="addExitProduct()">
+            Agregar producto a salida
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
+
+
+</div>
+
+
+  <!--mat-form-field appearance="outline">
+    <mat-label>ID del producto</mat-label>
+    <input matInput name = "warehouse" [(ngModel)]="newExitProduct.productId">
+  </mat-form-field>
+  
+  <mat-form-field appearance="outline">
+    <mat-label>Modelo</mat-label>
+    <input matInput name = "shelving" [(ngModel)]="newExitProduct.model">
+  </mat-form-field>
+  
+  <mat-form-field appearance="outline">
+    <mat-label>Cantidad</mat-label>
+    <input matInput name = "shelf" [(ngModel)]="newExitProduct.quantity">
+  </mat-form-field>
+  
+  <mat-form-field appearance="outline">
+    <mat-label>Regresado</mat-label>
+    <input matInput name = "serial" [(ngModel)]="newExit.products[0].returned">
+  </mat-form-field-->

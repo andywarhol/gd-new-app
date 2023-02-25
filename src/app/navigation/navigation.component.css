@@ -18,7 +18,7 @@ mat-toolbar{
 
 .products-sidenav{
     margin: 16px;
-    width: 250px;
+    width: 300px;
     border-right: none;
     background: whitesmoke;
     color: #002b5c;
@@ -28,14 +28,27 @@ mat-toolbar{
 }
 
 
+.exits-sidenav{
+    margin: 16px;
+    width: 90%;
+    border-right: none;
+    background: whitesmoke;
+    color: #002b5c;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+}
+
+
+
 .content{
     height: calc(100vh - 98px);
     margin:16px;
+    padding:10px 10px 0px 10px;
     margin-left: 32px;
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
-
     font-size: 2rem;
     color: lightgray;
     
@@ -54,3 +67,11 @@ mat-sidenav-container{
 .flexSpaceBetween {
     justify-content: space-between;
   }
+
+.button-toggle {
+    width: 100px;
+}
+
+.button-exits-toggle {
+    width: 200px;
+}

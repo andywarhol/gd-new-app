@@ -22,6 +22,12 @@ export class SidenavComponent implements OnInit {
       this.route.navigateByUrl('/products')
   }
 
+  
+  goToSalidasPage(){
+    this.route.navigateByUrl('/salidas')
+}
+
+
   ngOnInit(): void {
       this.isLoggedIn = !!this.tokenStorageService.getToken();
 

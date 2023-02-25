@@ -10,3 +10,7 @@ h1{
   .example-full-width {
     width: 100%;
   }
+
+  .mat-table {
+    height: calc(100vh - 98px);
+  }

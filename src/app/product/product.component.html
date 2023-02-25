@@ -1,65 +1,67 @@
-
 <h1>Productos</h1>
-
-<table mat-table [dataSource]="productsList" class="mat-elevation-z8 product-table" #tabla1>
+<div>
+  <table mat-table [dataSource]="productsList" class="mat-elevation-z8 product-table" #tabla1>
 
 
     <ng-container matColumnDef="Marca">
       <th mat-header-cell *matHeaderCellDef> {{displayedColumns[0]}} </th>
       <td mat-cell *matCellDef="let element"> {{element.brand}} </td>
     </ng-container>
-  
+
     <!-- Name Column -->
     <ng-container matColumnDef="Modelo">
       <th mat-header-cell *matHeaderCellDef> {{displayedColumns[1]}} </th>
       <td mat-cell *matCellDef="let element"> {{element.model}} </td>
     </ng-container>
-  
+
     <!-- Weight Column -->
     <ng-container matColumnDef="Categoria">
       <th mat-header-cell *matHeaderCellDef> {{displayedColumns[2]}} </th>
       <td mat-cell *matCellDef="let element"> {{element.category}} </td>
     </ng-container>
-  
+
     <!-- Symbol Column -->
     <ng-container matColumnDef="Descripción">
       <th mat-header-cell *matHeaderCellDef> {{displayedColumns[3]}} </th>
       <td mat-cell *matCellDef="let element"> {{element.description}} </td>
     </ng-container>
 
-      
+
     <!-- Symbol Column -->
     <ng-container matColumnDef="Cantidad">
-        <th mat-header-cell *matHeaderCellDef> {{displayedColumns[4]}} </th>
-        <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+      <th mat-header-cell *matHeaderCellDef> {{displayedColumns[4]}} </th>
+      <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
     </ng-container>
 
-      
+
     <!-- Symbol Column -->
     <ng-container matColumnDef="Ubicación">
-        <th mat-header-cell *matHeaderCellDef> {{displayedColumns[5]}} </th>
-        <td mat-cell *matCellDef="let element"> {{element.warehouse}}-{{element.shelving}}-{{element.shelf}} </td>
+      <th mat-header-cell *matHeaderCellDef> {{displayedColumns[5]}} </th>
+      <td mat-cell *matCellDef="let element"> {{element.warehouse}}-{{element.shelving}}-{{element.shelf}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Agregar Existencias">
-        <th mat-header-cell *matHeaderCellDef> {{displayedColumns[6]}} </th>
-        <td  mat-cell *matCellDef="let element"> 
-          <form [formGroup]="updateQuantity" (ngSubmit)="onSubmit(element._id)">
-            <mat-form-field>
-              <input matInput formControlName="quantity">
-            </mat-form-field>
-            
-            <button mat-button type="submit">Agregar</button> 
-    
-          </form>
-         
-                
-        </td>
+      <th mat-header-cell *matHeaderCellDef> {{displayedColumns[6]}} </th>
+      <td mat-cell *matCellDef="let element">
+        <form [formGroup]="updateQuantity" (ngSubmit)="onSubmit(element._id)">
+          <mat-form-field>
+            <input matInput formControlName="quantity">
+          </mat-form-field>
+
+          <button mat-button type="submit">Agregar</button>
+
+        </form>
+
+
+      </td>
     </ng-container>
 
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  
-  
+
+  <!--mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+  </mat-paginator-->
+
+</div>

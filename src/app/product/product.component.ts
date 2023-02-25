@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -6,7 +6,8 @@ import { Product } from 'src/interfaces/product.interface';
 import { AccountService } from '../services/account.service';
 import { TokenStorageService } from '../services/token-storage.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -14,7 +15,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 
 
-export class ProductComponent implements OnInit {
+export class ProductComponent implements AfterViewInit{
 
   static title: string = "Productos";
   isLoggedIn = false;
@@ -28,8 +29,7 @@ export class ProductComponent implements OnInit {
   displayedColumns: string[] = ['Marca', 'Modelo', 'Categoria', 'Descripción', 'Cantidad', 'Ubicación', 'Agregar Existencias'];
   //datos a mostrar
   productsList:Product[] = [];
-  productsCount:number = this.productsList.length
-
+  dataSourceProducts = new MatTableDataSource<Product>(this.productsList);
 
   updateProductQuantity(updateQuantity: FormGroup) : any {
    // this.updateQuantity.id = id;
@@ -48,19 +48,20 @@ export class ProductComponent implements OnInit {
 
   onSubmit(idForm: string): void {
     // Process checkout data here
-    console.log(idForm)
-    console.log(JSON.stringify(this.updateQuantity.value));
-  
+
     this.updateQuantity.patchValue({
       id:idForm
     })
-    console.log(JSON.stringify(this.updateQuantity.value));
-  
+ 
     this.updateProductQuantity(this.updateQuantity);
     this.updateQuantity.reset();
   }
 
   constructor(private formBuilder: FormBuilder, private accService: AccountService, private route: Router, private tokenStorageService : TokenStorageService) { }
+
+  @ViewChild(MatPaginator) 
+  paginator: MatPaginator;
+
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
@@ -72,6 +73,10 @@ export class ProductComponent implements OnInit {
       this.route.navigateByUrl('/')
     }
  
+  }
+
+  ngAfterViewInit() {
+
   }
 
 }
