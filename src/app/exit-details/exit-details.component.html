@@ -1,11 +1,36 @@
-<h1 mat-dialog-title>Productos</h1>
-<div mat-dialog-content>
-    <div *ngFor="let item of data">
-        <p>Modelo: {{item.model}}</p>
-        <p>Cantidad: {{item.quantity}}</p>
-        <p>Regresado: {{item.returned}}</p>
+<h2 mat-dialog-title>Detalles</h2>
+<div mat-dialog-content class = "dialog">
+ 
+
+    <div *ngFor="let item of data.products">
+
+        <mat-form-field appearance="outline">
+            <mat-label>Modelo</mat-label>
+            <input matInput value="{{item.model}}" readonly>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Cantidad</mat-label>
+            <input matInput value="{{item.quantity}}" readonly>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Regresados</mat-label>
+            <input type="number" matInput max = "{{item.quantity}}" name = "returned" 
+            [ngModel] = "item.returned" (ngModel)="returned.returned">
+        </mat-form-field>
+
+        <form [formGroup]="returned" (ngSubmit)="onSubmit(item.productId, data.exitId)">
+            <mat-form-field appearance = "outline">
+                <mat-label>Regresar</mat-label>
+                <input matInput type = "number" max = "{{item.quantity}}" formControlName="returned">
+            </mat-form-field>
+            <button mat-raised-button type="submit">Agregar</button>
+        </form>
+
+
     </div>
-</div>
-<div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">No Thanks</button>
+
+
+
 </div>

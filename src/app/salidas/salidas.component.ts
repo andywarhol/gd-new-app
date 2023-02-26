@@ -26,7 +26,7 @@ export class SalidasComponent implements OnInit {
   isLoggedIn = false;
   exitsList: Exit[] = [];
 
-  displayedColumns: string[] = ['Llave', 'Empleado', 'Proyecto', 'Cliente', 'Recibe', 'Productos', 'Editar Salida'];
+  displayedColumns: string[] = ['Llave', 'Empleado', 'Proyecto', 'Cliente', 'Recibe', 'Productos'];
   
   getAllExits() : any{
     return this.accService.getAllExits().subscribe((res:Exit[])=>{
@@ -50,9 +50,9 @@ export class SalidasComponent implements OnInit {
  
   }
 
-  openDetails(products: DetailsData[]): void {
+  openDetails(products: DetailsData[], exitId: string): void {
     const dialogRef = this.dialog.open(ExitDetailsComponent, {
-      data: products
+      data: {products, exitId}
     });
   }
 

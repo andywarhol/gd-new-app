@@ -25,6 +25,7 @@ export class ProductComponent implements AfterViewInit{
     quantity: 0
   });
 
+  
   //columnas a mostrar
   displayedColumns: string[] = ['Marca', 'Modelo', 'Categoria', 'Descripción', 'Cantidad', 'Ubicación', 'Agregar Existencias'];
   //datos a mostrar
@@ -35,10 +36,17 @@ export class ProductComponent implements AfterViewInit{
    // this.updateQuantity.id = id;
 
     return this.accService.updateProductQuantity(this.updateQuantity.value).subscribe((res:any) => {
-      this.getAllProducts();
+      this.getPaginatedProducts(0, 4)
     })
   }
   
+  getPaginatedProducts(pages:number, productsPerPage: number){
+
+    return this.accService.productsPaginate({pages, productsPerPage}).subscribe((res:Product[])=>{
+      this.productsList = res;
+      console.log(this.productsList)
+    })
+  }
   
   getAllProducts() : any{
     return this.accService.getAllProducts().subscribe((res:Product[])=>{
@@ -67,7 +75,9 @@ export class ProductComponent implements AfterViewInit{
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     if(this.isLoggedIn){
-      this.getAllProducts();
+      //this.getAllProducts();
+      console.log(this.productsList)
+      this.getPaginatedProducts(0, 4)
     }
     else {
       this.route.navigateByUrl('/')
@@ -76,6 +86,7 @@ export class ProductComponent implements AfterViewInit{
   }
 
   ngAfterViewInit() {
+
 
   }
 

@@ -31,7 +31,7 @@
 <div class = "product-selection">
   <div class ="product-first-child">
     <h2>Productos Seleccionados</h2>
-    <table [ngClass] ="showTable? 'table-display-true': 'table-display-false'" mat-table [dataSource]="selectedProductsData" class="mat-elevation-z8">
+    <!--table [ngClass] ="showTable? 'table-display-true': 'table-display-false'" mat-table [dataSource]="selectedProductsData" class="mat-elevation-z8">
 
       <ng-container matColumnDef="Modelo">
         <th mat-header-cell *matHeaderCellDef> {{displayedColumns[0]}} </th>
@@ -55,17 +55,18 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+    </table-->
+
+    <div *ngFor="let item of selectedProductsData">
+      <p>Modelo: {{item.model}} - Cantidad: {{item.quantity}}</p>
+
+    </div>
   </div>
   
   <div class="product-sec-child">
-     
- 
-
     <div class="example-button-container">
-      <button mat-fab color="primary" (click)="addExit()" >
-        <span>AGREGAR</span>
-        <mat-icon>plus_one</mat-icon>
+      <button mat-raised-button color="basic" (click)="addExit()" >
+        <span>Salida</span>
       </button>
     </div>
   </div>
@@ -93,7 +94,7 @@
     
         <mat-form-field class = "field-spacing-pselection" appearance="outline">
           <mat-label>Buscar</mat-label>
-          <input matInput name = "search" [(ngModel)]="query.search">
+          <input matInput  oninput="this.value = this.value.toUpperCase()" name = "search" [(ngModel)]="query.search">
         </mat-form-field>
 
         <button mat-raised-button color="primary" class = "field-spacing-button" (click)="searchProducts()">Buscar</button>

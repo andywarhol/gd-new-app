@@ -57,14 +57,25 @@ export class AddExitsComponent implements OnInit {
     })
   }
 
+  getProducts(){
+    return this.selectedProductsData;
+  }
+
   addExitProduct(){
+    //add them to local storage
+    localStorage.setItem("1", JSON.stringify(this.newExitProduct))
+
     this.newExit.products.push(this.newExitProduct);
     this.selectedProductsData.push(this.newExitProduct);
+    console.log(this.selectedProductsData)
+    
+    this.route.navigateByUrl('/home')
+    
+    
     if(this.selectedProductsData.length > 0){
       this.showTable = true;
     }
 
-    console.log(this.selectedProductsData)
     this.newExitProduct = {
       productId: '',
       model: '',
@@ -93,6 +104,7 @@ export class AddExitsComponent implements OnInit {
   }
   
   addExit(){
+    console.log(this.newExit)
     this.accService.addExit(this.newExit).subscribe((res:any) => {
       if(this.route.url == '/salidas'){
         window.location.reload();

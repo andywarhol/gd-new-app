@@ -2,6 +2,10 @@
 <div style = "background-color: yellow!important;">
   <table mat-table [dataSource]="exitsList" class="mat-elevation-z8 product-table table" #tabla1>
 
+    <!--ng-container matColumnDef="Id">
+      <th mat-header-cell *matHeaderCellDef> {{displayedColumns[0]}} </th>
+      <td mat-cell *matCellDef="let element"> {{element._id}} </td>
+    </ng-container-->
 
     <ng-container matColumnDef="Llave">
       <th mat-header-cell *matHeaderCellDef> {{displayedColumns[0]}} </th>
@@ -38,17 +42,10 @@
     <ng-container matColumnDef="Productos">
         <th mat-header-cell *matHeaderCellDef> {{displayedColumns[5]}} </th>
         <td mat-cell *matCellDef="let element"> 
-            <button mat-raised-button color="primary" (click)="openDetails(element.products)">Ver Detalles</button>
+            <button mat-raised-button color="primary" (click)="openDetails(element.products, element._id)">Ver Detalles</button>
         </td>
     </ng-container>
 
-        <!-- Symbol Column -->
-    <ng-container matColumnDef="Editar Salida">
-        <th mat-header-cell *matHeaderCellDef> {{displayedColumns[6]}} </th>
-        <td mat-cell *matCellDef="let element"> 
-            <button mat-raised-button color="primary" (click)="openDetails(element.products)">Editar</button>
-        </td>
-    </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

@@ -7,7 +7,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 .mat-dialog-container {
-    border-radius: 10px!important;
+    padding:24px 24px 0px 24px!important;
 }
 
 .mat-form-field-wrapper{

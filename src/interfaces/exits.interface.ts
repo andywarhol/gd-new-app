@@ -7,6 +7,7 @@ export interface ExitProduct {
 }
 
 export interface Exit {
+    "_id"?: string,
     "key": string,
     "employee": string,
     "project": string,
