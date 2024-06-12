@@ -5,6 +5,9 @@ import { ExitKey } from 'src/interfaces/key.interface';
 import { Product } from 'src/interfaces/product.interface';
 import { QueryProducts } from 'src/interfaces/query-products.interface';
 import { AccountService } from '../services/account.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ErrorDialogComponent } from '../error-dialog/error-dialog.component'; 
+
 
 @Component({
   selector: 'app-add-exits',
@@ -12,6 +15,8 @@ import { AccountService } from '../services/account.service';
   styleUrls: ['./add-exits.component.css']
 })
 export class AddExitsComponent implements OnInit {
+  isProductSelected = false
+  
   query: QueryProducts ={
     field: '',
     search: ''
@@ -27,6 +32,8 @@ export class AddExitsComponent implements OnInit {
     shelving: '',
     shelf: ''
   };
+
+
 
   foundProducts: Product[];  
   
@@ -63,44 +70,50 @@ export class AddExitsComponent implements OnInit {
 
   addExitProduct(){
     //add them to local storage
-    localStorage.setItem("1", JSON.stringify(this.newExitProduct))
+    if(this.newExitProduct.quantity != 0 && this.newExitProduct.productId != ''){
+        
+      localStorage.setItem("1", JSON.stringify(this.newExitProduct))
 
-    this.newExit.products.push(this.newExitProduct);
-    this.selectedProductsData.push(this.newExitProduct);
-    console.log(this.selectedProductsData)
-    
-    this.route.navigateByUrl('/home')
-    
-    
-    if(this.selectedProductsData.length > 0){
-      this.showTable = true;
+      this.newExit.products.push(this.newExitProduct);
+      this.selectedProductsData.push(this.newExitProduct);
+      console.log(this.selectedProductsData)
+      
+      this.route.navigateByUrl('/home')
+      
+      
+      if(this.selectedProductsData.length > 0){
+        this.showTable = true;
+      }
+
+      this.newExitProduct = {
+        productId: '',
+        model: '',
+        quantity: 0,
+        returned: 0
+      }
+
+      this.selectedProduct = {
+        brand: '',
+        model: '',
+        category: '',
+        description: '',
+        warehouse: '',
+        shelving: '',
+        shelf: ''
+      }
+
+      this.foundProducts = []
+
+      this.query = {
+        field: '',
+        search: ''
+      }
+      this.isProductSelected = false;
+      this.labelselect = "--- No hay producto seleccionado ---";
     }
-
-    this.newExitProduct = {
-      productId: '',
-      model: '',
-      quantity: 0,
-      returned: 0
+    else {
+      this.dialog.open(ErrorDialogComponent);
     }
-
-    this.selectedProduct = {
-      brand: '',
-      model: '',
-      category: '',
-      description: '',
-      warehouse: '',
-      shelving: '',
-      shelf: ''
-    }
-
-    this.foundProducts = []
-
-    this.query = {
-      field: '',
-      search: ''
-    }
-
-    this.labelselect = "--- No hay producto seleccionado ---";
   }
   
   addExit(){
@@ -124,14 +137,14 @@ export class AddExitsComponent implements OnInit {
 
   selectProduct(product: Product){
     this.selectedProduct = product;
-
+    this.isProductSelected = true;
     this.newExitProduct.model = product.model;
     this.newExitProduct.productId = product._id;
-    
     this.newExitProduct.returned = 0;
   }
 
-  constructor(private accService: AccountService,  private route: Router) { }
+
+  constructor(private accService: AccountService,  private route: Router, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getKey();

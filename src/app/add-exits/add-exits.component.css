@@ -18,15 +18,18 @@
 }
 
 .product-selection-first-child{
-    width:30%;
+    justify-content: flex-start;
 }
 .product-selection-sec-child{
     box-sizing: border-box;
     margin-left: 5px;
-    width: 70%;
+
 
 }
-
+.disabled-card {
+    pointer-events: none;
+    opacity: 0.5;
+  }
 .product-first-child{
     width:50%;
 }
