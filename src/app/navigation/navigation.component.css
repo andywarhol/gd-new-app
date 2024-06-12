@@ -25,6 +25,7 @@ mat-toolbar{
     border-radius: 10px;
     padding: 16px;
     text-align: center;
+    height:auto;
 }
 
 
@@ -37,9 +38,13 @@ mat-toolbar{
     border-radius: 10px;
     padding: 16px;
     text-align: center;
+    height:auto;
 }
 
-
+.products-sidenav, .exits-sidenav {
+    transition: all 0.6s ease-in-out;
+    overflow: hidden;
+}
 
 .content{
     height: calc(100vh - 98px);
@@ -75,3 +80,28 @@ mat-sidenav-container{
 .button-exits-toggle {
     width: 200px;
 }
+
+.header-container {
+    display: flex;
+    align-items: center;
+    margin: 5px!important;
+    justify-content: flex-end;
+  }
+  
+  .header-container h2 {
+    margin: 0;
+    padding-right: 10px; /* Espacio entre el texto y los botones */
+  }
+  
+  .buttons-toggle {
+    display: flex;
+  }
+  
+  .custom-toggle {
+
+  }
+
+  .custom-toggle.mat-button-toggle-checked {
+    background-color: #004a9f !important; /* Cambia este color al que prefieras */
+    color: white !important;
+  }

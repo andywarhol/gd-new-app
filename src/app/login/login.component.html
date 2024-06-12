@@ -1,4 +1,4 @@
-<div class="back">
+<!--div class="back">
   <section class="vh-100">
     <mat-card>
       <mat-card-content>
@@ -6,18 +6,18 @@
   
           <h2>Inicia Sesión</h2>
           <hr>
-          <!--div class="form-outline mb-4">
+          <--div class="form-outline mb-4">
             <input type="text" id="user" name = "username" placeholder="Usuario" class="form-control form-control-lg" [(ngModel)]="loginObj.username">
-          </div-->
+          </div>
           <br>
           <mat-form-field appearance="outline">
             <mat-label>Usuario</mat-label>
             <input matInput id="user" name="username" [(ngModel)]="loginObj.username">
           </mat-form-field>
          
-          <!--div class="form-outline mb-4">
+          <div class="form-outline mb-4">
             <input type="password" id="password" name="password" placeholder="Contraseña" class="form-control form-control-lg"  [(ngModel)]="loginObj.password">
-          </div-->
+          </div>
           <br>
           <mat-form-field appearance="outline">
             <mat-label>Constraseña</mat-label>
@@ -39,4 +39,36 @@
   
   </section>
   
+</div-->
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form>
+      <input type="text" id="user" class="fadeIn second" name="username" placeholder="login" [(ngModel)]="loginObj.username">
+
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" [(ngModel)]="loginObj.password">
+
+      <input type="submit" class="fadeIn fourth" value="Log In"  (click)="onLogin()">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+
+  </div>
 </div>

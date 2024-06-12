@@ -39,12 +39,15 @@
     </mat-sidenav-content>
 
     <mat-sidenav [ngClass] = "addProduct == true ? 'products-sidenav': 'exits-sidenav'" #productsidenav="matSidenav" mode="over" position="end">
-        <h1 style = "margin: 5px!important;">Agregar</h1>
-        <mat-button-toggle-group class = "buttons-toggle" name="fontStyle" aria-label="Font Style">
-            <mat-button-toggle value="producto" (click)="addProductTrue()">Producto</mat-button-toggle>
-            <mat-button-toggle value="salida"   (click)="addExitTrue()" >Salida </mat-button-toggle>
-        </mat-button-toggle-group>
- 
+        <div class="header-container">
+            <!--h2>Agregar &nbsp;</h2-->
+            <mat-button-toggle-group class = "buttons-toggle" name="fontStyle" aria-label="Font Style">
+                <mat-button-toggle class = "custom-toggle" value="producto" (click)="addProductTrue()">Agregar Producto</mat-button-toggle>
+                <mat-button-toggle class = "custom-toggle" value="salida"   (click)="addExitTrue()" >Agregar Salida&nbsp;</mat-button-toggle>
+            </mat-button-toggle-group>
+    
+        </div>
+        
         <div *ngIf = "addProduct">
             <hr>
             <app-add-product></app-add-product>
@@ -53,7 +56,6 @@
             <hr>
             <app-add-exits></app-add-exits>
         </div>
-
 
     </mat-sidenav>
 

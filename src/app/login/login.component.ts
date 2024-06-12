@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
         password:''
     }
     onLogin(){
-
+        this.route.navigateByUrl('/home')
         //Call api function for login.
 
         this.accService.onLogin(this.loginObj).subscribe((res:any) => {
