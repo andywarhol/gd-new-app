@@ -31,10 +31,17 @@
 <div class = "product-selection">
   <div class ="product-first-child">
     <h2>Productos Seleccionados</h2>
-    <div *ngFor="let item of selectedProductsData">
-      <p>Modelo: {{item.model}} -- Cantidad: {{item.quantity}}</p>
-
+    <div *ngIf="!isProductsFound">
+      <p style = "color:gray">No se ha seleccionado ningun producto. Busca productos para agregarlos a la salida.</p>
     </div>
+
+    <div *ngIf="isProductsFound">
+      <div *ngFor="let item of selectedProductsData">
+        <p>Modelo: {{item.model}} -- Cantidad: {{item.quantity}}</p>
+  
+      </div>
+    </div>
+   
   </div>
   
   <div class="product-sec-child">

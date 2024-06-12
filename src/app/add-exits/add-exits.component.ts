@@ -16,6 +16,7 @@ import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
 })
 export class AddExitsComponent implements OnInit {
   isProductSelected = false
+  isProductsFound = false 
   
   query: QueryProducts ={
     field: '',
@@ -59,6 +60,7 @@ export class AddExitsComponent implements OnInit {
     this.accService.searchProducts(this.query).subscribe((res: Product[]) => {
       this.foundProducts = res;
       if(res.length != 0){
+        this.isProductsFound = true
         this.labelselect = "--- PRODUCTOS ENCONTRADOS ---"
       }
     })
