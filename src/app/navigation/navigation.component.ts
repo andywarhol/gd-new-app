@@ -29,10 +29,13 @@ export class NavigationComponent implements OnInit {
   
   @ViewChild(MatSidenav)
   exitssidenav!: MatSidenav;
+
   
   constructor(private observer: BreakpointObserver, private tokenStorageService : TokenStorageService, private route: Router){
 
   }
+
+
 
   ngAfterViewInit() {
     //if matches means we are on small screen

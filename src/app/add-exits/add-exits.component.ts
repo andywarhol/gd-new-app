@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output, EventEmitter  } from '@angular/core';
 import { Router } from '@angular/router';
 import { Exit, ExitProduct } from 'src/interfaces/exits.interface';
 import { ExitKey } from 'src/interfaces/key.interface';
@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../error-dialog/error-dialog.component'; 
 
 
+
 @Component({
   selector: 'app-add-exits',
   templateUrl: './add-exits.component.html',
@@ -17,7 +18,8 @@ import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
 export class AddExitsComponent implements OnInit {
   isProductSelected = false
   isProductsFound = false 
-  
+
+
   query: QueryProducts ={
     field: '',
     search: ''
@@ -69,10 +71,19 @@ export class AddExitsComponent implements OnInit {
   getProducts(){
     return this.selectedProductsData;
   }
+  cantidadValida: boolean = false; // Flag para habilitar o deshabilitar el botón
+
+  checkCantidad() {
+    // Validar si la cantidad es mayor que 0
+    this.cantidadValida = this.newExitProduct.quantity > 0 && this.newExitProduct.quantity <= this.selectedProduct.quantity;
+  }
+
 
   addExitProduct(){
+
+    
     //add them to local storage
-    if(this.newExitProduct.quantity != 0 && this.newExitProduct.productId != ''){
+    if(this.newExitProduct.quantity != 0){
         
       localStorage.setItem("1", JSON.stringify(this.newExitProduct))
 
@@ -117,15 +128,22 @@ export class AddExitsComponent implements OnInit {
       this.dialog.open(ErrorDialogComponent);
     }
   }
+  //catching response to bind it in html
+  responseStatus: number | null = null; 
+
   
   addExit(){
-    console.log(this.newExit)
     this.accService.addExit(this.newExit).subscribe((res:any) => {
-      if(this.route.url == '/salidas'){
-        window.location.reload();
-      } else {
-        this.route.navigateByUrl('/salidas')
-      }
+  
+      
+       // this.responseStatus = res.status;
+        if(this.route.url == '/salidas'){
+          window.location.reload();
+        } else {
+          this.route.navigateByUrl('/salidas')
+        }
+   
+    
     })
   }
 

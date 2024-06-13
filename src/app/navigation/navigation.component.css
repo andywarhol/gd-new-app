@@ -40,12 +40,12 @@ mat-toolbar{
     text-align: center;
     height:auto;
 }
-
+/*al quitar este se recupera la animacion de cuando cerramos el navbar*
 .products-sidenav, .exits-sidenav {
-    transition: all 0.6s ease-in-out;
+    transition: all 0.6s ease-in-out; 
     overflow: hidden;
 }
-
+*/
 .content{
     height: calc(100vh - 98px);
     margin:16px;
@@ -95,10 +95,6 @@ mat-sidenav-container{
   
   .buttons-toggle {
     display: flex;
-  }
-  
-  .custom-toggle {
-
   }
 
   .custom-toggle.mat-button-toggle-checked {

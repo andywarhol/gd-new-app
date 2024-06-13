@@ -45,11 +45,15 @@
   </div>
   
   <div class="product-sec-child">
-    <div class="example-button-container">
-      <button mat-raised-button color="basic" (click)="addExit()" >
-        <span>Agregar Salida</span>
-      </button>
+    <div *ngIf="isProductsFound">
+      <div class="example-button-container">
+        <button mat-raised-button color="basic" (click)="addExit()" >
+          <span>Agregar Salida</span>
+          <!--p *ngIf="responseStatus !== null">{{responseStatus}}</p-->
+        </button>
+      </div>
     </div>
+    
   </div>
   
 
@@ -135,16 +139,22 @@
           <input matInput [ngModel]="selectedProduct.quantity" readonly>
         </mat-form-field>
 
-        <mat-form-field  class = "field-spacing-detalles" appearance="outline">
-          <mat-label>Cantidad</mat-label>
-          <input matInput matTooltip="El numero tiene que ser mayor a 0" type = "number" min = "1" max = {{selectedProduct.quantity}} [(ngModel)]="newExitProduct.quantity">
-        </mat-form-field>
-          
-        <div class="example-button-container">
-          <button mat-raised-button color="primary" class = "field-spacing-button" (click)="addExitProduct()">
-            Agregar producto a salida
-          </button>
+        <div *ngIf="selectedProduct.quantity != 0">
+          <mat-form-field  class = "field-spacing-detalles" appearance="outline">
+            <mat-label>Cantidad</mat-label>
+            <input (input)="checkCantidad()" name ="cantidad" matInput matTooltip="El numero tiene que ser mayor a 0 y no mayor al numero de producto disponible" type = "number" min = "1" max = {{selectedProduct.quantity}} [(ngModel)]="newExitProduct.quantity">
+          </mat-form-field>
+            
+         
+          <div class="example-button-container">
+            <button mat-raised-button color="primary" class = "field-spacing-button" (click)="addExitProduct()" [disabled] = "!cantidadValida">
+              Agregar producto a salida
+            </button>
+          </div>
+
         </div>
+       
+       
       </mat-card-content>
     </mat-card>
   </div>
