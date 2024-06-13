@@ -36,6 +36,7 @@ import { AddExitsComponent } from './add-exits/add-exits.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSortModule } from '@angular/material/sort';
 
 
 const routes : Routes = [
@@ -89,7 +90,9 @@ const routes : Routes = [
     MatButtonToggleModule,
     MatExpansionModule,
     MatSelectModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSortModule,
+
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS, useClass: CustomInterceptor,

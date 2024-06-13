@@ -29,7 +29,8 @@
 .disabled-card {
     pointer-events: none;
     opacity: 0.5;
-  }
+
+}
 .product-first-child{
     width:50%;
 }
