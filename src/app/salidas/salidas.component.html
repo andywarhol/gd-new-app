@@ -1,8 +1,10 @@
 <h1>Salidas</h1>
-<mat-form-field>
+<!--mat-form-field>
   <mat-label>Buscar</mat-label>
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar...">
-</mat-form-field>
+</mat-form-field-->
+
+<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar...">
 
 <div class = "mat-elevation-z8">
   <!--table mat-table [dataSource]="exitsList" class="mat-elevation-z8 product-table table" #tabla1 matSort-->

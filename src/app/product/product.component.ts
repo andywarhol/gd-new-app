@@ -8,6 +8,8 @@ import { TokenStorageService } from '../services/token-storage.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -30,7 +32,14 @@ export class ProductComponent implements AfterViewInit{
   displayedColumns: string[] = ['Marca', 'Modelo', 'Categoria', 'Descripción', 'Cantidad', 'Ubicación', 'Agregar Existencias'];
   //datos a mostrar
   productsList:Product[] = [];
-  dataSourceProducts = new MatTableDataSource<Product>(this.productsList);
+
+  //dataSourceProducts = new MatTableDataSource<Product>(this.productsList);
+  dataSource: MatTableDataSource<Product>; 
+
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  
 
   updateProductQuantity(updateQuantity: FormGroup) : any {
    // this.updateQuantity.id = id;
@@ -44,14 +53,21 @@ export class ProductComponent implements AfterViewInit{
 
     return this.accService.productsPaginate({pages, productsPerPage}).subscribe((res:Product[])=>{
       this.productsList = res;
-      console.log(this.productsList)
     })
   }
   
   getAllProducts() : any{
     return this.accService.getAllProducts().subscribe((res:Product[])=>{
       this.productsList = res;
+      this.dataSource.data = this.productsList; // Asigna los datos al dataSource
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     })
+  }
+
+  applyFilter(filterValue: string): void {
+    const filterValueLower = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filterValueLower;
   }
 
   onSubmit(idForm: string): void {
@@ -65,19 +81,20 @@ export class ProductComponent implements AfterViewInit{
     this.updateQuantity.reset();
   }
 
-  constructor(private formBuilder: FormBuilder, private accService: AccountService, private route: Router, private tokenStorageService : TokenStorageService) { }
+  constructor(private formBuilder: FormBuilder, private accService: AccountService, private route: Router, private tokenStorageService : TokenStorageService) { 
+    this.dataSource = new MatTableDataSource();
+  }
 
-  @ViewChild(MatPaginator) 
-  paginator: MatPaginator;
+  //@ViewChild(MatPaginator) 
+  //paginator: MatPaginator;
 
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     if(this.isLoggedIn){
-      //this.getAllProducts();
-      console.log(this.productsList)
-      this.getPaginatedProducts(0, 4)
+      //this.getPaginatedProducts(0, 4)
+      this.getAllProducts();
     }
     else {
       this.route.navigateByUrl('/')
