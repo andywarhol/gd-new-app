@@ -134,16 +134,11 @@ export class AddExitsComponent implements OnInit {
   
   addExit(){
     this.accService.addExit(this.newExit).subscribe((res:any) => {
-  
-      
-       // this.responseStatus = res.status;
         if(this.route.url == '/salidas'){
           window.location.reload();
         } else {
           this.route.navigateByUrl('/salidas')
         }
-   
-    
     })
   }
 

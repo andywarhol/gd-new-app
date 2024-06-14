@@ -29,7 +29,7 @@ export class SalidasComponent implements OnInit {
   exitsList: Exit[] = [];
 
   dataSource: MatTableDataSource<Exit>; 
-  displayedColumns: string[] = ['Llave', 'Empleado', 'Proyecto', 'Cliente', 'Recibe', 'Productos'];
+  displayedColumns: string[] = ['Llave', 'Empleado', 'Proyecto', 'Cliente', 'Recibe','Fecha', 'Creado por' ,'Productos'];
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

@@ -12,7 +12,7 @@ import { TokenStorageService } from "../services/token-storage.service";
 })
 export class NavigationComponent implements OnInit {
 
-  title: any = "Inventario";
+  title: any = "";
 
   addProduct: boolean = true;
   addExit: boolean = false;

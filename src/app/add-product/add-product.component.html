@@ -1,48 +1,44 @@
 <mat-form-field appearance="outline">
   <mat-label>Marca</mat-label>
-  <input matInput name = "brand" [(ngModel)]="newProductObj.brand">
+  <input matInput oninput="this.value = this.value.toUpperCase()" name = "brand" [(ngModel)]="newProductObj.brand">
 </mat-form-field>
 
 <mat-form-field appearance="outline">
   <mat-label>Modelo</mat-label>
-  <input matInput name = "model" [(ngModel)]="newProductObj.model">
+  <input matInput oninput="this.value = this.value.toUpperCase()" name = "model" [(ngModel)]="newProductObj.model">
 </mat-form-field>
 
 <mat-form-field appearance="outline">
   <mat-label>Categoria</mat-label>
-  <input matInput name = "category" [(ngModel)]="newProductObj.category">
+  <input matInput oninput="this.value = this.value.toUpperCase()" name = "category" [(ngModel)]="newProductObj.category">
 </mat-form-field>
 
 <mat-form-field appearance="outline">
   <mat-label>Descripción</mat-label>
-  <input matInput name = "description" [(ngModel)]="newProductObj.description">
+  <input matInput oninput="this.value = this.value.toUpperCase()" name = "description" [(ngModel)]="newProductObj.description">
 </mat-form-field>
 
 <mat-form-field appearance="outline">
   <mat-label>Cantidad</mat-label>
-  <input matInput name = "quantity" type = "number" min = "1" [(ngModel)]="newProductObj.quantity">
+  <input matInput oninput="this.value = this.value.toUpperCase()" name = "quantity" type = "number" min = "1" [(ngModel)]="newProductObj.quantity">
 </mat-form-field>
 
-<!--mat-form-field appearance="outline">
-  <mat-label>Almacen</mat-label>
-  <input matInput name = "warehouse" [(ngModel)]="newProductObj.warehouse">
-</mat-form-field-->
 
 <mat-form-field class = "field-spacing-pselection" appearance="outline">
   <mat-label>Almacen</mat-label>
-  <mat-select matInput  name = "warehouse" [(ngModel)]="newProductObj.warehouse">
+  <mat-select matInput oninput="this.value = this.value.toUpperCase()" name = "warehouse" [(ngModel)]="newProductObj.warehouse">
     <mat-option *ngFor = "let element of warehouseDropdown" value = "{{element.name}}">{{element.name}}</mat-option>
   </mat-select>
 </mat-form-field>
 
 <mat-form-field appearance="outline">
   <mat-label>Estante</mat-label>
-  <input matInput name = "shelving" [(ngModel)]="newProductObj.shelving">
+  <input matInput oninput="this.value = this.value.toUpperCase()" name = "shelving" [(ngModel)]="newProductObj.shelving">
 </mat-form-field>
 
 <mat-form-field appearance="outline">
   <mat-label>Repisa</mat-label>
-  <input matInput name = "shelf" [(ngModel)]="newProductObj.shelf">
+  <input matInput oninput="this.value = this.value.toUpperCase()" name = "shelf" [(ngModel)]="newProductObj.shelf">
 </mat-form-field>
 
 

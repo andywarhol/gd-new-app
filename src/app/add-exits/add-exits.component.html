@@ -8,22 +8,22 @@
 
   <mat-form-field class = "field-spacing" appearance="outline">
     <mat-label>Proyecto</mat-label>
-    <input matInput name = "project" [(ngModel)]="newExit.project">
+    <input matInput oninput="this.value = this.value.toUpperCase()" name = "project" [(ngModel)]="newExit.project">
   </mat-form-field>
   
   <mat-form-field class = "field-spacing" appearance="outline">
     <mat-label>Empleado</mat-label>
-    <input matInput name = "employee" [(ngModel)]="newExit.employee">
+    <input matInput oninput="this.value = this.value.toUpperCase()" name = "employee" [(ngModel)]="newExit.employee">
   </mat-form-field>
   
   <mat-form-field class = "field-spacing" appearance="outline">
     <mat-label>Cliente</mat-label>
-    <input matInput name = "client" [(ngModel)]="newExit.client">
+    <input matInput oninput="this.value = this.value.toUpperCase()" name = "client" [(ngModel)]="newExit.client">
   </mat-form-field>
 
   <mat-form-field class = "field-spacing" appearance="outline">
     <mat-label>Recibe</mat-label>
-    <input matInput name = "receives" [(ngModel)]="newExit.receives">
+    <input matInput oninput="this.value = this.value.toUpperCase()" name = "receives" [(ngModel)]="newExit.receives">
   </mat-form-field>
 
 </div>

@@ -9,6 +9,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-product',
@@ -40,15 +42,32 @@ export class ProductComponent implements AfterViewInit{
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   
-
+  /*
   updateProductQuantity(updateQuantity: FormGroup) : any {
    // this.updateQuantity.id = id;
-
     return this.accService.updateProductQuantity(this.updateQuantity.value).subscribe((res:any) => {
-      this.getPaginatedProducts(0, 4)
+      this.getAllProducts();
+      window.location.reload();
     })
+    
   }
+  */
+
+  updateProductQuantity(updateQuantity: FormGroup): any {
+    return this.accService.updateProductQuantity(this.updateQuantity.value).pipe(
+      catchError((error: any) => {
+      
+        alert('Failed to update product quantity. Please try again later.');
+        console.error('Error occurred:', error);
   
+        return throwError(error);
+      })
+    ).subscribe((res: any) => {
+      this.getAllProducts();
+      window.location.reload();
+    });
+  }
+
   getPaginatedProducts(pages:number, productsPerPage: number){
 
     return this.accService.productsPaginate({pages, productsPerPage}).subscribe((res:Product[])=>{

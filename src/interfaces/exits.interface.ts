@@ -1,3 +1,5 @@
+import { ExitStatus } from "./enums/status.enum"
+import { User } from "./user.interface"
 
 export interface ExitProduct {
     "productId": string,
@@ -13,5 +15,9 @@ export interface Exit {
     "project": string,
     "client": string,
     "receives": string,
-    "products": ExitProduct[]
+    "createdAt"?:string,
+    "createdBy"?:User,
+    "products": ExitProduct[],
+    "status"?: ExitStatus
 }
+
