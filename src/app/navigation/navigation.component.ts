@@ -1,5 +1,5 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild,  ChangeDetectorRef } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from "@angular/router";
 import { ProductComponent } from '../product/product.component';
@@ -31,14 +31,11 @@ export class NavigationComponent implements OnInit {
   exitssidenav!: MatSidenav;
 
   
-  constructor(private observer: BreakpointObserver, private tokenStorageService : TokenStorageService, private route: Router){
+  constructor(private observer: BreakpointObserver, private tokenStorageService : TokenStorageService, private route: Router, private cdr: ChangeDetectorRef){
 
   }
 
-
-
   ngAfterViewInit() {
-    //if matches means we are on small screen
     this.observer.observe(['(max-width: 800px)']).subscribe((res)=>
     {
         if(res.matches){
@@ -48,6 +45,7 @@ export class NavigationComponent implements OnInit {
           this.sidenav.mode = 'side';
           this.sidenav.open();
         }
+        this.cdr.detectChanges(); 
     });
   }
 

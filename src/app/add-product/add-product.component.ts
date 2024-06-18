@@ -61,7 +61,7 @@ export class AddProductComponent implements OnInit {
   constructor(private accService: AccountService,  private route: Router) { }
 
   ngOnInit(): void {
-    this.getWarehouses();
+    //this.getWarehouses();
   }
 
 }

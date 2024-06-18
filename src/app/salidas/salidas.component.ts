@@ -2,13 +2,13 @@ import { Component, OnInit, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { AccountService } from '../services/account.service';
 import { TokenStorageService } from '../services/token-storage.service';
-import { Product } from 'src/interfaces/product.interface';
-import { Exit } from 'src/interfaces/exits.interface';
+import { Exit, Product } from '../../interfaces';
 import { MatDialog } from '@angular/material/dialog';
 import { ExitDetailsComponent } from '../exit-details/exit-details.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { UserRoles } from '../../interfaces/enums/roles.enum';
 
 
 export interface DetailsData {
@@ -29,8 +29,9 @@ export class SalidasComponent implements OnInit {
   exitsList: Exit[] = [];
 
   dataSource: MatTableDataSource<Exit>; 
-  displayedColumns: string[] = ['Llave', 'Empleado', 'Proyecto', 'Cliente', 'Recibe','Fecha', 'Creado por' ,'Productos'];
-
+  displayedColumns: string[] = ['Llave', 'Empleado Solicita', 'Proyecto', 'Cliente', 'Quien Recibe','Fecha', 'Creado por' ,'Productos', 'Status'];
+  isAdmin: boolean = false;
+  
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -110,23 +111,12 @@ export class SalidasComponent implements OnInit {
     else {
       this.route.navigateByUrl('/')
     }
-    /*
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-    this.dataSource.filterPredicate = (data: Exit, filtersJson: string) => {
-      const matchFilter = [];
-      const filters = JSON.parse(filtersJson);
 
-      filters.forEach(filter => {
-        const val = data[filter.id] === null ? '' : data[filter.id];
-        matchFilter.push(val.toLowerCase().includes(filter.value.toLowerCase()));
-      });
-        return matchFilter.every(Boolean);
-    };
-    */
+    if (localStorage.getItem('roles') == UserRoles.ADMIN) {
+      this.isAdmin = true;
+    }
  
   }
-
 
 
   openDetails(products: DetailsData[], exitId: string): void {
